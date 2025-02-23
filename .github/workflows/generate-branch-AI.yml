@@ -1,0 +1,51 @@
+name: Create Branch from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Determine branch type
+        id: determine_branch_type
+        run: |
+          if [[ "${{ github.event.issue.labels }}" == *"bug"* ]]; then
+            echo "::set-output name=branch_type::fix"
+          else
+            echo "::set-output name=branch_type::feature"
+          fi
+          
+      - name: Generate branch name using OpenAI API
+        id: generate_branch_name
+        run: |
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          ISSUE_NUMBER="#${{ github.event.issue.number }}"
+          BRANCH_TYPE="${{ steps.determine_branch_type.outputs.branch_type }}"
+          GENERATED_NAME=$(curl -X POST "https://api.openai.com/v1/chat/completions" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+            -d '{
+              "model": "gpt-4o",
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "Generate a descriptive branch name for the following issue title. Must use kebab-case in English. : '"${ISSUE_TITLE}"'"
+                }
+              ],
+              "max_tokens": 10
+            }' | jq -r '.choices[0].message.content' | tr -d '[:space:]')
+          BRANCH_NAME="${BRANCH_TYPE}-${ISSUE_NUMBER}-${GENERATED_NAME}"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create new branch
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout -b ${{ steps.generate_branch_name.outputs.branch_name }}
+          git push origin ${{ steps.generate_branch_name.outputs.branch_name }}
