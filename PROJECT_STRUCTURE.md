@@ -17,7 +17,7 @@ this-repository/
 ├── tests/  
 │   ├── conftest.py  
 │   ├── __init__.py 
-│   ├── test_module1.py  
+│   ├── test_drawing.py  
 │   └── integration/  
 │       ├── __init__.py
 │       └── test_integration.py  
@@ -54,11 +54,10 @@ GitHub関連の設定ファイルを格納します。
 #### **[package_name]/**
 **プロジェクトのメインパッケージディレクトリです。通常、パッケージ名はプロジェクト名と同じにします。  **
   - `__init__.py`: パッケージの初期化ファイル
-  - `module1.py`: 機能ごとに分割したモジュール例。モジュールは機能別に分割して配置します。  
-  - サブパッケージは別ディレクトリに分割
-  - **subpackage/**: より細かい機能やドメインごとに分割するためのサブパッケージ。  
-    - `__init__.py`: サブパッケージの初期化ファイル。  
-    - `module_sub.py`: サブパッケージ内のモジュール例。
+  - `main.py`: 基本の実行ファイル。  
+  - `drawing.py`: 描画を処理するファイル。  
+  - `fontgen.py`: フォントを出力するファイル。  
+
 
 ### output/
 手書きした文字のPNGや生成した.ttfを出力するフォルダです。

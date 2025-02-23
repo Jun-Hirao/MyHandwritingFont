@@ -68,32 +68,26 @@ def check_structure():
             print("Error: No Python package directory found in src (directory with __init__.py).")
             errors = True
         else:
-            # package内の module1.py の存在確認
-            module1 = os.path.join(package_dir, "module1.py")
-            if not check_path(module1):
-                errors = True
-
-            # subpackage のチェック
-            subpackage_dir = os.path.join(package_dir, "subpackage")
-            if not check_path(subpackage_dir, is_dir=True):
-                errors = True
-            else:
-                # __init__.py のチェック
-                sub_init = os.path.join(subpackage_dir, "__init__.py")
-                if not check_path(sub_init):
-                    errors = True
-                # module_sub.py のチェック（仕様に合わせて必須の場合）
-                module_sub = os.path.join(subpackage_dir, "module_sub.py")
-                if not check_path(module_sub):
+            # package内の .py の存在確認
+            for file in ["__init__.py", "main.py", "drawing.py","fontgen.py"]:
+                if not check_path(os.path.join(package_dir, file)):
                     errors = True
 
-    # 3. tests/ 配下のチェック
+    # 3. output/ ディレクトリのチェック
+    if not check_path(os.path.join(base, "output"), is_dir=True):
+        errors = True
+
+    # 4.assets/ ディレクトリのチェック
+    if not check_path(os.path.join(base, "assets"), is_dir=True):
+        errors = True
+
+    # 5. tests/ 配下のチェック
     tests_dir = os.path.join(base, "tests")
     if not check_path(tests_dir, is_dir=True):
         errors = True
     else:
         # 共通テスト設定ファイル
-        for test_file in ["conftest.py", "test_module1.py"]:
+        for test_file in ["conftest.py", "test_drawing.py"]:
             if not check_path(os.path.join(tests_dir, test_file)):
                 errors = True
 
@@ -107,7 +101,7 @@ def check_structure():
                     errors = True
 
 
-    # 4. scripts/ 配下のチェック
+    # 6. scripts/ 配下のチェック
     scripts_dir = os.path.join(base, "scripts")
     if not check_path(scripts_dir, is_dir=True):
         errors = True
@@ -119,7 +113,7 @@ def check_structure():
             print(f"Error: Expected file '{current_script}' in scripts directory not found.")
             errors = True
 
-    # 5. ルート直下の主要ファイルチェック
+    # 7. ルート直下の主要ファイルチェック
     root_files = [
         ".gitignore",
         "pyproject.toml",
