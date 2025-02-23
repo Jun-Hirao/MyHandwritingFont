@@ -106,23 +106,8 @@ def check_structure():
                 if not check_path(os.path.join(integration_dir, int_file)):
                     errors = True
 
-    # 4. docs/ 配下のチェック
-    docs_dir = os.path.join(base, "docs")
-    if not check_path(docs_dir, is_dir=True):
-        errors = True
-    else:
-        source_dir = os.path.join(docs_dir, "source")
-        build_dir  = os.path.join(docs_dir, "build")
-        if not check_path(source_dir, is_dir=True):
-            errors = True
-        else:
-            for doc_file in ["conf.py", "index.rst"]:
-                if not check_path(os.path.join(source_dir, doc_file)):
-                    errors = True
-        if not check_path(build_dir, is_dir=True):
-            errors = True
 
-    # 5. scripts/ 配下のチェック
+    # 4. scripts/ 配下のチェック
     scripts_dir = os.path.join(base, "scripts")
     if not check_path(scripts_dir, is_dir=True):
         errors = True
@@ -134,7 +119,7 @@ def check_structure():
             print(f"Error: Expected file '{current_script}' in scripts directory not found.")
             errors = True
 
-    # 6. ルート直下の主要ファイルチェック
+    # 5. ルート直下の主要ファイルチェック
     root_files = [
         ".gitignore",
         "pyproject.toml",
@@ -142,8 +127,7 @@ def check_structure():
         "README.md",
         "CODING_GUIDELINES.md",
         "PROJECT_STRUCTURE.md",
-        "LICENSE",
-        "setup.cfg"
+        "LICENSE"
     ]
     for rf in root_files:
         if not check_path(os.path.join(base, rf)):

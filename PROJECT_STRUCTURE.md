@@ -9,10 +9,11 @@ this-repository/
 ├── src/  
 │   └── [package_name]/  
 │       ├── __init__.py  
-│       ├── module1.py  
-│       └── subpackage/  
-│           ├── __init__.py  
-│           └── module_sub.py  
+│       ├── main.py  
+│       ├── drawing.py  
+│       └── fontgen.py  
+├── output/  
+├── assets/  
 ├── tests/  
 │   ├── conftest.py  
 │   ├── __init__.py 
@@ -20,12 +21,6 @@ this-repository/
 │   └── integration/  
 │       ├── __init__.py
 │       └── test_integration.py  
-├── docs/  
-│   ├── source/  
-│   │   ├── conf.py
-│   │   └── index.rst 
-│   └── build/  
-│       └── (生成ファイル)  
 ├── scripts/  
 │   ├── validate_structure.py  
 │   └── other_tools.py 
@@ -35,8 +30,8 @@ this-repository/
 ├── README.md
 ├── CODING_GUIDELINES.md
 ├── PROJECT_STRUCTURE.md
-├── LICENSE
-└── setup.cfg
+└── LICENSE
+
 ```
 # 各ディレクトリとファイルの説明
 
@@ -65,6 +60,12 @@ GitHub関連の設定ファイルを格納します。
     - `__init__.py`: サブパッケージの初期化ファイル。  
     - `module_sub.py`: サブパッケージ内のモジュール例。
 
+### output/
+手書きした文字のPNGや生成した.ttfを出力するフォルダです。
+
+### assets/
+アプリのアイコンなどの静的ファイルを保存するフォルダです。
+
 ### tests/
 単体テスト、統合テスト、エンドツーエンドテストなど、テストコード全般を配置します。
 
@@ -77,15 +78,6 @@ GitHub関連の設定ファイルを格納します。
 - `__init__.py`: 統合テストのパッケージ化用（必要に応じて）。  
 - `test_integration.py`: 統合テストの例。
 
-
-### docs/
-ドキュメント関連ファイルを格納します。
-#### source/
-- `conf.py`: Sphinxなどのドキュメント生成ツールの設定ファイル。  
-- `index.rst`: ドキュメントのメインエントリーポイント。  
-- その他、RSTやMarkdown形式のソースファイルを配置します。
-#### build/
-- Sphinxなどで生成されたHTMLやその他フォーマットのドキュメントを出力するディレクトリです。
 
 ### scripts/
 開発支援用のスクリプト類を格納します。
@@ -102,7 +94,6 @@ GitHub関連の設定ファイルを格納します。
 ### 主要ファイル(Python)
 - **requirements.txt**: Pythonの依存パッケージの一覧を記述します。
 - **pyproject.toml**: PEP 518準拠のビルドシステム設定ファイルです。
-- **setup.cfg**: setuptools等のパッケージビルドやメタデータ設定を行うためのファイルです。
 
 # ディレクトリ規約と運用ルール
 
