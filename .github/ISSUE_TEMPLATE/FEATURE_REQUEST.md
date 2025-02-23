@@ -1,9 +1,8 @@
 ---
 name: 機能要望
-about: 機能追加・削除などを行いたい時にはこちら
+about: 機能追加・削除要望などを行いたい時にはこちら
 title: "○○機能の実装"
 labels: enhancement
-assignees: Jun-Hirao
 
 ---
 
@@ -36,7 +35,7 @@ assignees: Jun-Hirao
 
 
 # その他
-参考資料や打ち合わせのURLやメモ等あれば記載してください。
+参考資料のURLやメモ等あれば記載してください。
 
 # 関連issue
 <!--
@@ -44,10 +43,3 @@ assignees: Jun-Hirao
 -->
 - [x] 無し
 
-# MileStone
-
-# Label
-- [ ] ラベルを貼ったらxでチェックすること
-
-# Assign
-- [ ] 担当を振ったらxでチェックすること

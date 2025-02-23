@@ -7,18 +7,6 @@
 - **ファイル名構造**: 小文字のみ、アンダースコアで単語を区切る。
 - **例**: `my_script.py`, `data_loader.py`
 
-### JavaScript
-- **ファイル名構造**: 小文字で単語間はハイフンで区切る（特にクラス名またはコンポーネント名には大文字を使用）。
-- **例**: `my-script.js`, `user.component.js`
-
-### C#
-- **ファイル名構造**: PascalCase（各単語の頭文字が大文字）。クラス名やインターフェース名に使用される。
-- **例**: `MyClass.cs`, `IUserService.cs`
-
-### VBA (Visual Basic for Applications)
-- **ファイル名構造**: CamelCase（最初の単語の頭文字は小文字、それ以降の各単語の頭文字は大文字）。
-- **例**: `myModule.bas`, `UserForm.frm`
-
 ## 2. コーディングスタイル
 - **インデント**: スペース4つでインデントを統一する。
 - **行の長さ**: 1行は80文字以内に収める。
