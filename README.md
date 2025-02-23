@@ -5,9 +5,10 @@
 自分の手書き文字をフォントに変換するアプリです。ペンタブやマウスで文字を書いて、それをデジタルフォント（.ttf形式）に変換することで、手書き風の履歴書などに利用できます。対応OSはWindowsです。
 
 ### インストール
-1. リポジトリをクローン: `git clone https://github.com/Jun-Hirao/MyHandwritingFont.git`
-2. 依存関係をインストール: `pip install -r requirements.txt`
-3. 実行: `python src/myhandwritingfont/main.py`
+1. [Ghostscript](https://ghostscript.com/index.html)をインストールしてください。
+2. リポジトリをクローン: `git clone https://github.com/Jun-Hirao/MyHandwritingFont.git`
+3. 依存関係をインストール: `pip install -r requirements.txt`
+4. 実行: `python src/myhandwritingfont/main.py`
 
 ### 使い方
 1. アプリ起動したら、キャンバスに1文字手書き。
@@ -20,6 +21,7 @@
 - pyenv-win
 - Python 3.11.9
 - venv
+- Ghostscript 10.04.0
 
 
 ## コーディング規約
