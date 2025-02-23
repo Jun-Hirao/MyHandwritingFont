@@ -18,6 +18,13 @@ class DrawingCanvas:
         save_btn = tk.Button(master, text="保存", command=self.save_image)
         save_btn.pack()
 
+        clear_btn = tk.Button(master, text="クリア", command=self.clear_canvas)
+        clear_btn.pack()
+
+    def clear_canvas(self):
+        self.canvas.delete("all")
+        self.last_x, self.last_y = None, None
+
     def start_draw(self, event):
         # 描画開始時の位置を記録（新しい線を開始）
         self.last_x, self.last_y = event.x, event.y
