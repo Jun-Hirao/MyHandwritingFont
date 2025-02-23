@@ -40,9 +40,11 @@ class DrawingCanvas:
         self.last_x, self.last_y = None, None
 
     def save_image(self):
-        if not os.path.exists("output"):
-            os.makedirs("output")
+# 連番付きファイル名
+        count = 1
+        while os.path.exists(f"output/char_{count}.png"):
+            count += 1
         ps = self.canvas.postscript(colormode="color")
         img = Image.open(io.BytesIO(ps.encode("utf-8")))
-        img.save("output/char.png", "PNG")
-        print("保存したよ！")
+        img.save(f"output/char_{count}.png", "PNG")
+        print(f"保存しました！（output/char_{count}.png）")
